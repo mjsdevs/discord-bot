@@ -25,15 +25,19 @@ const commandHandler = async (message) => {
     .shift()
     .toLowerCase();
 
-  switch (command) {
-    case 'help':
-      displayHelp(message);
-      break;
-    case 'save':
-      saveToLibrary(message);
-      break;
-    default:
-      break;
+  if (args.length === 0) {
+    displayHelp(message);
+  } else {
+    switch (command) {
+      case 'help':
+        displayHelp(message);
+        break;
+      case 'save':
+        saveToLibrary(message);
+        break;
+      default:
+        break;
+    }
   }
 };
 

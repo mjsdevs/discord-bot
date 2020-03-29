@@ -13,6 +13,7 @@ const Register = mongoose.model('Register', RegisterSchema);
 
 module.exports = async (message) => {
   try {
+    message.react('👍');
     await mongoose.connect(mongoConnectionString, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
@@ -24,21 +25,22 @@ module.exports = async (message) => {
       endMark: ']',
     });
 
-    const title = extract({
+    const [title] = extract({
       content: message.content,
       startMark: '{',
       endMark: '}',
     });
 
-    const url = extract({
+    const [url] = extract({
       content: message.content,
       startMark: '<',
       endMark: '>',
     });
 
     await Register.create({ url, tags, title });
-    message.channel.send('Register created');
+    message.reply(`Hello! I've created a register for:\n \`${title}\``);
   } catch (e) {
+    console.log(e);
     message.channel.send('Could not create the register! Check the logs!');
   }
 };

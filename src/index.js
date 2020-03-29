@@ -3,10 +3,11 @@ require('dotenv').config();
 
 const { DISCORD_BOT_TOKEN: token } = process.env;
 
-const { extract } = require('./utils');
+const saveToLibrary = require('./commands/saveToLibrary');
+const displayHelp = require('./commands/displayHelp');
 
 const client = new Discord.Client();
-const prefix = '/';
+const { COMMAND_PREFIX: prefix } = process.env;
 
 client.login(token);
 
@@ -24,31 +25,11 @@ const commandHandler = async (message) => {
 
   switch (command) {
     case 'help':
-      message.reply('Hello!');
-      message.channel.send('Here\'s a list of avaliable commands:');
-      message.channel.send(`- \`${prefix}help\`: Show this help.`);
-      message.channel.send(`- \`${prefix}save {brifing} [tag1, tag2] <https://myLink.com>\`: Saves something to the library.`);
+      displayHelp(message);
       break;
 
     case 'save':
-      message.channel.send(`Tags: \`${extract({
-        content: message.content,
-        startMark: '[',
-        endMark: ']',
-      })}\``);
-
-      message.channel.send(`Text: \`${extract({
-        content: message.content,
-        startMark: '{',
-        endMark: '}',
-      })}\``);
-
-      message.channel.send(`Link: \`${extract({
-        content: message.content,
-        startMark: '<',
-        endMark: '>',
-      })}\``);
-
+      saveToLibrary(message);
       break;
 
     default:

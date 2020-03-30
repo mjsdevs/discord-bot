@@ -1,17 +1,19 @@
-const Discord = require('discord.js');
-require('dotenv').config();
+import Discord from 'discord.js';
+import dotenv from 'dotenv';
 
-const saveToLibrary = require('./commands/saveToLibrary');
-const displayHelp = require('./commands/displayHelp');
+import saveToLibrary from './commands/saveToLibrary';
+import displayHelp from './commands/displayHelp';
+
+dotenv.config({ path: '.env' });
+
+const prefix = '/';
 
 const {
   DISCORD_BOT_TOKEN: token,
-  COMMAND_PREFIX: prefix,
 } = process.env;
 
 const client = new Discord.Client();
 client.login(token);
-
 
 const commandHandler = async (message) => {
   if (!message.content.startsWith(prefix) || message.author.bot) return;

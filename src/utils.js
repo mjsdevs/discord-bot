@@ -1,4 +1,4 @@
-exports.extract = ({ content, startMark, endMark }) => {
+export const extract = ({ content, startMark, endMark }) => {
   const start = content.indexOf(startMark) + 1;
   const end = content.indexOf(endMark);
 

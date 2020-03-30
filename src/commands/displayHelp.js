@@ -1,6 +1,6 @@
-const { COMMAND_PREFIX: prefix } = process.env;
+const prefix = '/';
 
-module.exports = (message) => {
+export default (message) => {
   message.reply('Hello!');
   message.channel.send('Here\'s a list of available commands:');
   message.channel.send(`- \`${prefix}help\`: Show this help.`);

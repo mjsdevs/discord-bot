@@ -1,5 +1,5 @@
-const mongoose = require('mongoose');
-const { extract } = require('../utils');
+import mongoose from 'mongoose';
+import { extract } from '../utils';
 
 const { MONGODB_CONNECTION_STRING: mongoConnectionString } = process.env;
 
@@ -11,7 +11,7 @@ const RegisterSchema = new mongoose.Schema({
 
 const Register = mongoose.model('Register', RegisterSchema);
 
-module.exports = async (message) => {
+export default async (message) => {
   try {
     message.react('👍');
     await mongoose.connect(mongoConnectionString, {

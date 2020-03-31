@@ -7,10 +7,6 @@ export default class Bot {
     token,
     databaseURI,
   }) {
-    console.log(prefix);
-    console.log(token);
-    console.log(databaseURI);
-
     this.prefix = prefix;
     this.token = token;
     this.databaseURI = databaseURI;

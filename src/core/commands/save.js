@@ -1,8 +1,6 @@
 import mongoose from 'mongoose';
 import { extract } from '../utils';
 
-const { MONGODB_CONNECTION_STRING: mongoConnectionString } = process.env;
-
 const RegisterSchema = new mongoose.Schema({
   title: String,
   url: String,
@@ -11,13 +9,13 @@ const RegisterSchema = new mongoose.Schema({
 
 const Register = mongoose.model('Register', RegisterSchema);
 
-export default async (message) => {
+export default async ({ message, databaseURI }) => {
   try {
-    message.react('👍');
-    await mongoose.connect(mongoConnectionString, {
+    await mongoose.connect(databaseURI, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
+
 
     const tags = extract({
       content: message.content,

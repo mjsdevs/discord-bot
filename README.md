@@ -22,7 +22,7 @@ Instale as dependências:
 yarn install
 ```
 
-Para executar os testes, utilize o script `test`. Para gerar os arquivos de produção no diretório `dist/`, utilize o script `build`. Caso queira executar em modo de produção ou desenvolvimento, utilize o script `start` ou `dev`, respectivamente.
+Para executar os testes, utilize o script `test`. Para gerar os arquivos de produção no diretório `dist/`, utilize o script `build`. Caso queira executar em modo de produção ou desenvolvimento, utilize o script `start` ou `start:dev`, respectivamente.
 
 ## Tecnologias
 - [Node.js](https://nodejs.org)

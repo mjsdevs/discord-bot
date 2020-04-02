@@ -36,7 +36,6 @@ export default class Bot {
             help({ message, prefix: this.prefix });
             break;
           case 'save':
-            console.log(this.databaseURI);
             save({ message, databaseURI: this.databaseURI });
             break;
           default:

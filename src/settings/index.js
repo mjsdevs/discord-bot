@@ -27,6 +27,8 @@ const settings = convict({
   },
 });
 
-settings.loadFile(path.join(__dirname, `${settings.get('env')}.json`));
+if (settings.get('env') !== 'production') {
+  settings.loadFile(path.join(__dirname, `${settings.get('env')}.json`));
+}
 
 export default settings;

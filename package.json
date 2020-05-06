@@ -6,7 +6,9 @@
   "scripts": {
     "start": "NODE_ENV=production node dist/index.js",
     "start:dev": "NODE_ENV=development nodemon --exec babel-node src/index.js",
-    "build": "babel src --out-dir dist"
+    "build": "babel src --out-dir dist",
+    "gcp-build": "yarn build",
+    "deploy": "gcloud app deploy"
   },
   "dependencies": {
     "axios": "^0.19.2",

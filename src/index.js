@@ -1,7 +1,9 @@
 import Bot from './core';
 import settings from './settings';
 
-const { prefix, token, databaseURI } = settings.get();
+const token = process.env.DISCORD_BOT_TOKEN || settings.get('token');
+const prefix = process.env.DISCORD_BOT_PREFIX || settings.get('prefix');
+const databaseURI = process.env.DATABASE_URL || settings.get('databaseURI');
 
 const discordBot = new Bot({
   prefix,

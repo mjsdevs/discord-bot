@@ -1,21 +1,13 @@
-import mongoose from 'mongoose';
+import { connect } from 'mongoose';
 import { extract } from '../utils';
-
-const RegisterSchema = new mongoose.Schema({
-  title: String,
-  url: String,
-  tags: [String],
-});
-
-const Register = mongoose.model('Register', RegisterSchema);
+import Register from '../models';
 
 export default async ({ message, databaseURI }) => {
   try {
-    await mongoose.connect(databaseURI, {
+    await connect(databaseURI, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
-
 
     const tags = extract({
       content: message.content,

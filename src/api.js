@@ -16,8 +16,13 @@ api.route('/wakeup').all((req, res) => {
 });
 
 api.route('/registers').all(async (req, res) => {
-  const registers = await Register.find().limit(5);
-  res.status(200).send({ data: registers });
+  try {
+    const registers = await Register.find();
+    res.status(200).send({ data: registers });
+  } catch (e) {
+    console.log(e);
+    res.status(500).send(e);
+  }
 });
 
 export default api;

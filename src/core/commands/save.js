@@ -1,14 +1,8 @@
-import { connect } from 'mongoose';
 import { extract } from '../utils';
 import Register from '../models';
 
-export default async ({ message, databaseURI }) => {
+export default async ({ message }) => {
   try {
-    await connect(databaseURI, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
-
     const tags = extract({
       content: message.content,
       startMark: '[',
@@ -27,8 +21,8 @@ export default async ({ message, databaseURI }) => {
       endMark: '>',
     });
 
-    await Register.create({ url, tags, title });
-    message.reply(`Hello! I've created a register for:\n \`${title}\``);
+    const { _id: id } = await Register.create({ url, tags, title });
+    message.reply(`Hello! I've created a register for:\n \`${title}\`(id: ${id})`);
   } catch (e) {
     console.log(e);
     message.channel.send('Could not create the register! Check the logs!');

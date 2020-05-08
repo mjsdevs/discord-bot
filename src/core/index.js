@@ -1,15 +1,13 @@
 import Discord from 'discord.js';
-import { save, help } from './commands';
+import { save, help, remove } from './commands';
 
 export default class Bot {
   constructor({
     prefix,
     token,
-    databaseURI,
   }) {
     this.prefix = prefix;
     this.token = token;
-    this.databaseURI = databaseURI;
     this.client = new Discord.Client();
   }
 
@@ -36,8 +34,10 @@ export default class Bot {
             help({ message, prefix: this.prefix });
             break;
           case 'save':
-            save({ message, databaseURI: this.databaseURI });
+            save({ message });
             break;
+          case 'remove':
+            remove({ message });
           default:
             break;
         }

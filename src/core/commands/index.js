@@ -1,3 +1,9 @@
-export { default as save } from './save';
-export { default as help } from './help';
-export { default as remove } from './remove';
+import save from './save';
+import help from './help';
+import remove from './remove';
+
+export default {
+  save,
+  help,
+  remove,
+};

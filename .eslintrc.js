@@ -15,5 +15,7 @@ module.exports = {
     ecmaVersion: 2018,
   },
   rules: {
+    "linebreak-style": "off",
+    "no-console": "off",
   },
 };

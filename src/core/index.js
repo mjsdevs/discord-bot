@@ -1,5 +1,5 @@
 import Discord from 'discord.js';
-import { save, help, remove } from './commands';
+import commands from './commandsObject'
 
 export default class Bot {
   constructor({
@@ -26,22 +26,7 @@ export default class Bot {
         .shift()
         .toLowerCase();
 
-      if (args.length === 0) {
-        help({ message, prefix: this.prefix });
-      } else {
-        switch (command) {
-          case 'help':
-            help({ message, prefix: this.prefix });
-            break;
-          case 'save':
-            save({ message });
-            break;
-          case 'remove':
-            remove({ message });
-          default:
-            break;
-        }
-      }
+      return commands({ message, prefix: this.prefix})[command || 'help'];
     } catch (e) {
       console.log(e);
     }

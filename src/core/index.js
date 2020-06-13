@@ -1,5 +1,6 @@
 import Discord from 'discord.js';
-import commands from './commandsObject'
+
+import commands from './commands';
 
 export default class Bot {
   constructor({
@@ -26,7 +27,9 @@ export default class Bot {
         .shift()
         .toLowerCase();
 
-      return commands({ message, prefix: this.prefix})[command || 'help'];
+      const params = { message, prefix: this.prefix };
+
+      commands[command || 'help'](params);
     } catch (e) {
       console.log(e);
     }

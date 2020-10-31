@@ -8,6 +8,7 @@ lerna-debug.log*
 tags*
 
 development.json
+env.json
 production.json
 
 # Diagnostic reports (https://nodejs.org/api/report.html)
